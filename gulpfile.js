@@ -8,7 +8,7 @@ var path = {
 // Static server
 gulp.task('browser-sync', function() {
     var files = [
-    './test/**/*'
+    './src/**/*'
     ];
     browserSync.init(files,{
         server: {
@@ -25,6 +25,7 @@ gulp.task('browser-sync', function() {
 //});
 
 gulp.task('default',['browser-sync'],function(files){
+    //console.log('start');
     gulp.watch(path.baseDir).on('change',function(){
         console.log(files);
         browserSync.reload; 

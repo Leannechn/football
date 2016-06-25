@@ -1,0 +1,11 @@
+#world-map{
+	height: 500px;
+	width: 100%;
+	margin: 0 auto;
+}
+ .spotlight.right .content{
+ 	width: 76em;
+ }
+ .spotlight.bottom .content{
+ 	padding-top: 2.1em;
+ }
