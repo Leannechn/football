@@ -5,6 +5,7 @@
 }
  .spotlight.right .content{
  	width: 76em;
+ 	padding-top: 1em;
  }
  .spotlight.bottom .content{
  	padding-top: 2.1em;

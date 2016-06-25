@@ -226,5 +226,9 @@ $().ready(function(){
 	});
 
 
+	//初始化表格
+	$("#team-table").DataTable();
+
+
 
 });
