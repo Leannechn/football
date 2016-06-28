@@ -80,13 +80,14 @@ function drawTable(teamsJson){
 	//初始化表格
 
 	$("#team-table").DataTable({
+		//data:teamsJson,
 		columnDefs:[{
 					render:function(data){
 						//图标转换
 						var team = _.find(teamsJson, function(t){
 							return t.name.toUpperCase() == data;
 						});
-						return team? '<span class="flag-wrap"><img src="images/flags/'+team.icon+'.png" class="flag"></span><a href="/worldfootball/statisticsandrecords/players/player=76824/index.html" class="text"> '+data+'</a>':data;
+						return '<span class="flag-wrap"><img src="images/flags/bra.png" class="flag"></span><a href="/worldfootball/statisticsandrecords/players/player=76824/index.html" class="text"> '+data+'</a>';
 					},
 					targets:0
 				}]

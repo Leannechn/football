@@ -10,6 +10,25 @@
  .spotlight.bottom .content{
  	padding-top: 2.1em;
  }
- table .text{
+ table .text,#overview .text{
  	vertical-align: top;
  }
+
+ #overview{
+ 	width: 100%;
+ 	position: absolute;
+ 	min-height: 200px;
+ 	top: 60px;
+ 	z-index: 100;
+ 	background-color: rgba(255,255,255,0.7);
+ 	color: #171820;
+ 	
+ }
+
+#overview .title{
+	color: rgb(228, 76, 101);
+	font-size: 16px;
+	font-weight: bold;
+}
+#overview a.text{color: #171820;font-weight: bold;}
+#overview li{padding-left: 10px;list-style: none;}
