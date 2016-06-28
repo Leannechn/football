@@ -10,3 +10,6 @@
  .spotlight.bottom .content{
  	padding-top: 2.1em;
  }
+ table .text{
+ 	vertical-align: top;
+ }
