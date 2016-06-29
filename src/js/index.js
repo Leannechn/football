@@ -56,19 +56,20 @@ $().ready(function(){
 		echarts.registerMap('world', worldJson);
 
 
-		$.get('localdata/teams_flag.json', function (teamsJson) {
+		$.get('localdata/teams_data.json', function (teamsJson) {
 			
 		   	option.series[0].label.normal.formatter = function(params){
 		   		var team = _.find(teamsJson, function(item){
-		   			return params.name === item.name;
+		   			return params.name.toUpperCase() === item.TEAM;
 		   		});
-		   		console.log(team);
+		   		//console.log(team);
 		   		return !!team? team['name']:' ';
 		   	}
 
 			worldMap.setOption(option);
 
 			drawTable(teamsJson);
+			initOverview(teamsJson);
 		});
 	});
 
@@ -80,18 +81,38 @@ function drawTable(teamsJson){
 	//初始化表格
 
 	$("#team-table").DataTable({
-		//data:teamsJson,
+		data:teamsJson,
+		columns:[
+			{title:'NO',data:'NO'},
+			{title:'TEAM',data:'TEAM'},
+			{title:'MATCHES PLAYED',data:'MATCHES PLAYED'},
+			{title:'WINS',data:'WINS'},
+			{title:'DRAWS',data:'DRAWS'},
+			{title:'LOSSES',data:'LOSSES'}
+		],
 		columnDefs:[{
 					render:function(data){
-						//图标转换
-						var team = _.find(teamsJson, function(t){
-							return t.name.toUpperCase() == data;
-						});
-						return '<span class="flag-wrap"><img src="images/flags/bra.png" class="flag"></span><a href="/worldfootball/statisticsandrecords/players/player=76824/index.html" class="text"> '+data+'</a>';
+						
+						return '<span class="flag-wrap"><img src="images/flags/'+data.substring(0,3).toLowerCase()+'.png" class="flag"></span><a href="detail.html" class="text"> '+data+'</a>';
 					},
-					targets:0
+					targets:1
 				}]
 	});
+}
+
+function initOverview(teamsJson){
+	$('#menu-overview').on('click',function(){
+		$("#overview").toggle(1000);
+	});
+	//var $segment = $(".js-segment");
+	_.each(teamsJson, function(item){
+		var selector = ".js-segment-"+item.TEAM.substring(0,1).toUpperCase();
+		console.log(selector)
+		$(selector).append('<li><span class="flag-wrap"><img src="images/flags/'+item.TEAM.substring(0,3).toLowerCase()+'.png" class="flag"></span><a class="text" href="detai.html?"> '+item.TEAM+'</a></li>')
+	});
+	/*$segment.filter(function(){
+		return $(this).find('li').length ==1;
+	}).remove();*/
 }
 
 
