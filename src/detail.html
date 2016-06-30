@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>team detail</title>
+	<title>team data</title>
 	<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
 		<link rel="stylesheet" href="assets/bootstrap-3.3.5-dist/css/bootstrap.min.css">
 		<link rel="stylesheet" href="assets/css/main.css" />
@@ -10,7 +10,7 @@
 <body>
 <!-- Header -->
 	<header id="header">
-		<h1 id="logo"><a href="index.html">WORLD CUP</a></h1>
+		<h1 id="logo"><a href="index.html">TEAM DATA</a></h1>
 		<nav id="nav">
 			<ul>
 				<li><a href="index.html">HOME</a></li>
@@ -113,6 +113,43 @@
 		
 	</section>
 <!-- /overview -->
+<!-- chart-1 -->
+	<div class="container-fluid" id="charts">
+		<div class="panel ">
+			<div class="panel-heading">
+				<h4 class="js-teamName"></h4>
+
+			</div>
+			<div class="panel-body container-fluid">
+				<div class="row">
+					<div id="chart-3" class="chart-canvas col-md-12"></div>
+				</div>
+				<div class="row" style="text-algin:center;">
+					<!-- <div id="chart-1" class="chart-canvas col-md-6"></div> -->
+					<div id="chart-line" class="col-md-12">
+						<h4>TOTAL:</h4>
+						<div style="width:100%">
+							<span class="chart-line-w">W</span>
+							<span class="chart-line-d">D</span>
+							<span class="chart-line-l">L</span>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<!-- <div id="chart-1" class="chart-canvas col-md-6"></div> -->
+					<div id="chart-2" class="chart-canvas col-md-12"></div>
+				</div>
+				<div style="margin-top:20px;">
+					EDITION:
+					<select id="select-EDITION" style="width:200px;display:inline;">
+						<option></option>
+					</select>
+					<div id="chart-4" class="chart-canvas" style="width:100%;"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+<!-- /chart-1 -->
 	<script src="assets/jquery-1.11.1.min.js"></script>
 	<script src="assets/lodash.min.js"></script>
 	<script src="assets/echarts/echarts.min.js"></script>
