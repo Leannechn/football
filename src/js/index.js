@@ -93,7 +93,7 @@ function drawTable(teamsJson){
 		columnDefs:[{
 					render:function(data){
 						
-						return '<span class="flag-wrap"><img src="images/flags/'+data.substring(0,3).toLowerCase()+'.png" class="flag"></span><a href="detail.html" class="text"> '+data+'</a>';
+						return '<span class="flag-wrap"><img src="images/flags/'+data.substring(0,3).toLowerCase()+'.png" class="flag"></span><a href="detail.html?team='+data+'" class="text"> '+data+'</a>';
 					},
 					targets:1
 				}]
@@ -108,7 +108,7 @@ function initOverview(teamsJson){
 	_.each(teamsJson, function(item){
 		var selector = ".js-segment-"+item.TEAM.substring(0,1).toUpperCase();
 		console.log(selector)
-		$(selector).append('<li><span class="flag-wrap"><img src="images/flags/'+item.TEAM.substring(0,3).toLowerCase()+'.png" class="flag"></span><a class="text" href="detai.html?"> '+item.TEAM+'</a></li>')
+		$(selector).append('<li><span class="flag-wrap"><img src="images/flags/'+item.TEAM.substring(0,3).toLowerCase()+'.png" class="flag"></span><a class="text" href="detail.html?team='+item.TEAM+'"> '+item.TEAM+'</a></li>')
 	});
 	/*$segment.filter(function(){
 		return $(this).find('li').length ==1;
