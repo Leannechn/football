@@ -1,0 +1,45 @@
+ #overview{
+ 	width: 100%;
+ 	position: absolute;
+ 	min-height: 200px;
+ 	top: 60px;
+ 	z-index: 100;
+ 	background-color: rgba(255,255,255,0.8);
+ 	color: #171820;
+ 	max-height: 630px;
+ 	overflow-y: scroll;
+ }
+
+#overview .title{
+	color: rgb(228, 76, 101);
+	font-size: 16px;
+	font-weight: bold;
+}
+#overview a.text{color: #171820;font-weight: bold;}
+#overview li{padding-left: 10px;list-style: none;}
+#compare{
+	margin-top: 80px;
+	width: 100%;
+}
+
+.delete_condition {
+    position: absolute;
+    right: -12px;
+    top: -12px;
+    width: 30px;
+    height: 30px;
+    line-height: 28px;
+    background-color: #194d3c;
+    border-radius: 30px;
+    -moz-border-radius: 30px;
+    -o-border-radius: 30px;
+    -webkit-border-radius: 30px;
+    color: #fff;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+#compare .panel{background-color: rgba(255,255,255,.1);}
+
+.condition_choose ul{list-style: none;}
+.condition_choose ul li{display: inline-block;position: relative;}
