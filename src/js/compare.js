@@ -1,11 +1,12 @@
 $().ready(function(){
 
-	
+	//初始化overview
 	$.get('localdata/teams_data.json', function (teamsJson) {
 		initOverview(teamsJson);
 	});
 
-	
+	//初始化下拉选择
+	$(".team_choose select").html($("#template-option-teams").html());
 
 });
 
