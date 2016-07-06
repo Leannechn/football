@@ -79,7 +79,22 @@ function refreshTable(){
 	var dt = $('#datatable').DataTable();
 	dt.clear();
 	var arr = _.filter(matchesdata,function(item){
-		return (item.TEAM1 == teamName1 && item.TEAM2 == teamName2);
+		isok = false;
+		if ((item.TEAM1 == teamName1 && item.TEAM2 == teamName2)) {
+			isok = true;
+		}
+		if ((item.TEAM1 == teamName2 && item.TEAM2 == teamName1)) {
+			isok = true;
+			var tg = item.T1G;
+			item.T1G =  item.T2G;
+			item.T2G = tg;
+		}
+		return isok;
 	});
+
+	
+	if (!arr.length) {
+		alert('查无数据！');
+	}
 	dt.rows.add(arr).draw()
 }
