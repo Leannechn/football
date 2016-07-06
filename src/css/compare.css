@@ -38,83 +38,12 @@
     font-size: 16px;
     text-align: center;
 }
+.vs{    font-size: 83px;
+    font-weight: bold;
+    color: #F1E006;
+    line-height: 160px;}
 .wctable {text-align: center;}
 
-.teamflag_c{width:65px;height:65px;display:inline-block;background:url(../images/teamflag_c.png) no-repeat 0 0}
-.teamflag_7587_c{background-position:0 0}
-.teamflag_7589_c{background-position:0 -65px}
-.teamflag_7631_c{background-position:0 -130px}
-.teamflag_7625_c{background-position:0 -195px}
-.teamflag_7626_c{background-position:0 -260px}
-.teamflag_7632_c{background-position:0 -325px}
-.teamflag_7635_c{background-position:0 -390px}
-.teamflag_7639_c{background-position:0 -455px}
-.teamflag_7627_c{background-position:0 -520px}
-.teamflag_7613_c{background-position:0 -585px}
-.teamflag_7617_c{background-position:0 -650px}
-.teamflag_b{display:inline-block;overflow:hidden;font-size:0;width:114px;height:64px;background:url(../images/teamflag_114x64.jpg) no-repeat 0 0}
-.teamflag_7589_b{background-position:0 0}
-.teamflag_7661_b{background-position:0 -64px}
-.teamflag_7619_b{background-position:0 -128px}
-.teamflag_7609_b{background-position:0 -192px}
-.teamflag_7587_b{background-position:0 -256px}
-.teamflag_7601_b{background-position:0 -320px}
-.teamflag_7585_b{background-position:0 -384px}
-.teamflag_7596_b{background-position:0 -448px}
-.teamflag_7641_b{background-position:0 -512px}
-.teamflag_7639_b{background-position:0 -576px}
-.teamflag_7617_b{background-position:0 -640px}
-.teamflag_7637_b{background-position:0 -704px}
-.teamflag_7635_b{background-position:0 -768px}
-.teamflag_7605_b{background-position:0 -832px}
-.teamflag_7632_b{background-position:0 -896px}
-.teamflag_7602_b{background-position:0 -960px}
-.teamflag_7591_b{background-position:0 -1024px}
-.teamflag_7592_b{background-position:0 -1088px}
-.teamflag_7586_b{background-position:0 -1152px}
-.teamflag_7621_b{background-position:0 -1216px}
-.teamflag_7593_b{background-position:0 -1280px}
-.teamflag_7625_b{background-position:0 -1344px}
-.teamflag_7626_b{background-position:0 -1408px}
-.teamflag_7627_b{background-position:0 -1472px}
-.teamflag_7675_b{background-position:0 -1536px}
-.teamflag_7649_b{background-position:0 -1600px}
-.teamflag_7581_b{background-position:0 -1664px}
-.teamflag_7611_b{background-position:0 -1728px}
-.teamflag_7583_b{background-position:0 -1792px}
-.teamflag_7665_b{background-position:0 -1856px}
-.teamflag_7613_b{background-position:0 -1920px}
-.teamflag_7631_b{background-position:0 -1984px}
-.teamflag_s{display:inline-block;overflow:hidden;font-size:0;width:26px;height:17px;background:url(../images/teamflag_26x17.jpg) no-repeat 0 0}
-.teamflag_7589_s{background-position:0 0}
-.teamflag_7661_s{background-position:0 -17px}
-.teamflag_7619_s{background-position:0 -34px}
-.teamflag_7609_s{background-position:0 -51px}
-.teamflag_7587_s{background-position:0 -68px}
-.teamflag_7601_s{background-position:0 -85px}
-.teamflag_7585_s{background-position:0 -102px}
-.teamflag_7596_s{background-position:0 -119px}
-.teamflag_7641_s{background-position:0 -136px}
-.teamflag_7639_s{background-position:0 -153px}
-.teamflag_7617_s{background-position:0 -170px}
-.teamflag_7637_s{background-position:0 -187px}
-.teamflag_7635_s{background-position:0 -204px}
-.teamflag_7605_s{background-position:0 -221px}
-.teamflag_7632_s{background-position:0 -238px}
-.teamflag_7602_s{background-position:0 -255px}
-.teamflag_7591_s{background-position:0 -272px}
-.teamflag_7592_s{background-position:0 -289px}
-.teamflag_7586_s{background-position:0 -306px}
-.teamflag_7621_s{background-position:0 -323px}
-.teamflag_7593_s{background-position:0 -340px}
-.teamflag_7625_s{background-position:0 -357px}
-.teamflag_7626_s{background-position:0 -374px}
-.teamflag_7627_s{background-position:0 -391px}
-.teamflag_7675_s{background-position:0 -408px}
-.teamflag_7649_s{background-position:0 -425px}
-.teamflag_7581_s{background-position:0 -442px}
-.teamflag_7611_s{background-position:0 -459px}
-.teamflag_7583_s{background-position:0 -476px}
-.teamflag_7665_s{background-position:0 -493px}
-.teamflag_7613_s{background-position:0 -510px}
-.teamflag_7631_s{background-position:0 -527px}
+.team-flag{width: 100px;}
+
+td{text-align: center;}

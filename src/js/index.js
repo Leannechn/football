@@ -1,6 +1,6 @@
 $().ready(function(){
 	var worldMap = echarts.init(document.getElementById('world-map'));
-	option = {
+	var option = {
 	    title: {
 	        text: 'World Population (2010)',
 	        subtext: 'from United Nations, Total population, both sexes combined, as of 1 July (thousands)',
