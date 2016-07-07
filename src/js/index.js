@@ -67,17 +67,23 @@ $().ready(function(){
 		   	}
 
 			worldMap.setOption(option);
-
-			drawTable(teamsJson);
-			initOverview(teamsJson);
+			$.get('localdata/teams_flag.json', function (teamsFlag) {
+				//初始化overview
+				initOverview(teamsFlag);
+				drawTable(teamsJson,teamsFlag);
+			});
+			
+			
 		});
 	});
+
+	
 
 	
 });
 
 
-function drawTable(teamsJson){
+function drawTable(teamsJson,teamsFlag){
 	//初始化表格
 
 	$("#team-table").DataTable({
@@ -92,28 +98,17 @@ function drawTable(teamsJson){
 		],
 		columnDefs:[{
 					render:function(data){
-						
-						return '<span class="flag-wrap"><img src="images/flags/'+data.substring(0,3).toLowerCase()+'.png" class="flag"></span><a href="detail.html?team='+data+'" class="text"> '+data+'</a>';
+						var t = _.find(teamsFlag, function(name){
+							return name.team.toUpperCase() === data;
+						});
+						console.log(t);
+						return t? '<span class="flag-wrap"><img src="images/flags/'+t.icon+'" class="flag"></span><a href="detail.html?team='+data+'" class="text"> '+data+'</a>':'';
 					},
 					targets:1
 				}]
 	});
 }
 
-function initOverview(teamsJson){
-	$('#menu-overview').on('click',function(){
-		$("#overview").toggle(1000);
-	});
-	//var $segment = $(".js-segment");
-	_.each(teamsJson, function(item){
-		var selector = ".js-segment-"+item.TEAM.substring(0,1).toUpperCase();
-		console.log(selector)
-		$(selector).append('<li><span class="flag-wrap"><img src="images/flags/'+item.TEAM.substring(0,3).toLowerCase()+'.png" class="flag"></span><a class="text" href="detail.html?team='+item.TEAM+'"> '+item.TEAM+'</a></li>')
-	});
-	/*$segment.filter(function(){
-		return $(this).find('li').length ==1;
-	}).remove();*/
-}
 
 
 

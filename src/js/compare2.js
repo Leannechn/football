@@ -1,6 +1,38 @@
 //全局数据
 var teamData = [],
 	matchesdata = [];
+var chartPie = null;
+
+var pieOption =  {
+    tooltip : {
+        trigger: 'item',
+        formatter: "{a} <br/>{b} : {c} ({d}%)"
+    },
+    legend: {
+        orient: 'vertical',
+        left: 'left',
+        textStyle: {color: "#fff"},
+        data: ['平局','队1赢','队2赢']
+    },
+    series : [
+        {
+            name: '胜率',
+            type: 'pie',
+            radius : '55%',
+            center: ['50%', '60%'],
+            data:[
+                {value:335, name:'无数据'}
+            ],
+            itemStyle: {
+                emphasis: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            }
+        }
+    ]
+};
 
 $().ready(function(){
 
@@ -59,7 +91,11 @@ $().ready(function(){
 			{title:'TEAM2 GOALS',data:'T2G'}
 		]
 	});
+
+	chartPie = echarts.init(document.getElementById('chart-pie'));
+	chartPie.setOption(pieOption);
 });
+
 
 function setTeamBox($teambox,img,name){
 	if (img) {
@@ -71,6 +107,23 @@ function setTeamBox($teambox,img,name){
 
 	$teambox.find('.team-name').text(name);
 	
+}
+
+function resetPie(arr){
+	var p = g1 = g2 = 0;
+	_.each(arr, function(it){
+		if (it.T1G === it.T12G) {p++;}
+		else if (it.T1G > it.T2G) {g1++;}
+		else{g2++;}
+	});
+	//var sun = p+g1+g2;
+	pieOption.series[0].data = [
+		{value:p,name:'平局'},
+		{value:g1,name:'队1赢'},
+		{value:g2,name:'队2赢'}
+	];
+
+	chartPie.setOption(pieOption);
 }
 
 function refreshTable(){
@@ -95,6 +148,8 @@ function refreshTable(){
 	
 	if (!arr.length) {
 		alert('查无数据！');
+	}else{
+		resetPie(arr); //重绘饼图
+		dt.rows.add(arr).draw();//重绘表格
 	}
-	dt.rows.add(arr).draw()
 }

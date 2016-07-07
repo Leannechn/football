@@ -6,7 +6,7 @@ function initOverview(teamsJson){
 	//var $segment = $(".js-segment");
 	_.each(teamsJson, function(item){
 		var selector = ".js-segment-"+item.team.substring(0,1).toUpperCase();
-		//console.log(selector)
+		//console.log(item.icon)
 		$(selector).append('<li><span class="flag-wrap"><img src="images/flags/'+item.icon+'" class="flag"></span><a class="text" href="detai.html?"> '+item.team+'</a></li>')
 	});
 }

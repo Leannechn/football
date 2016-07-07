@@ -17,7 +17,7 @@ table th {
 /*============ common css ================*/
  #overview{
  	width: 100%;
- 	position: absolute;
+ 	position: fixed;
  	min-height: 200px;
  	top: 60px;
  	z-index: 100;

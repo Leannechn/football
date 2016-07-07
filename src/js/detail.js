@@ -1,7 +1,7 @@
 $().ready(function(){
 	var team = getQueryString('team');
 	$(".js-teamName").html('<img src="images/flags/'+team.substring(0,3).toLowerCase()+'.png"> '+team);
-	$.get('localdata/teams_data.json', function (teamsJson) {
+	$.get('localdata/teams_flag.json', function (teamsJson) {
 		initOverview(teamsJson);
 	});
 
@@ -17,17 +17,6 @@ $().ready(function(){
 
 });
 
-function initOverview(teamsJson){
-	$('#menu-overview').on('click',function(){
-		$("#overview").toggle(1000);
-	});
-	//var $segment = $(".js-segment");
-	_.each(teamsJson, function(item){
-		var selector = ".js-segment-"+item.TEAM.substring(0,1).toUpperCase();
-		//console.log(selector)
-		$(selector).append('<li><span class="flag-wrap"><img src="images/flags/'+item.TEAM.substring(0,3).toLowerCase()+'.png" class="flag"></span><a class="text" href="detai.html?"> '+item.TEAM+'</a></li>')
-	});
-}
 
 function initCharts(team,data){
 	if (data.length>5) {
