@@ -112,7 +112,7 @@ function setTeamBox($teambox,img,name){
 function resetPie(arr){
 	var p = g1 = g2 = 0;
 	_.each(arr, function(it){
-		if (it.T1G === it.T12G) {p++;}
+		if (it.T1G == it.T2G) {p++;}
 		else if (it.T1G > it.T2G) {g1++;}
 		else{g2++;}
 	});
