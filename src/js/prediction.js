@@ -118,7 +118,7 @@ function resetStatic(arr){
         $('#p-goals').text(percentage(p,n));
         $('#g2-goals').text(percentage(g2,n));
     }else{
-        alert('这两支队伍无比赛数据')
+        alert('这两支队伍无历史比赛数据')
         $('#g1-goals').text('0%');
         $('#p-goals').text('0%');
         $('#g2-goals').text('0%');
@@ -206,7 +206,6 @@ function fnStatistic(matchesdata){
 
 function prediction(team1,team2,data){
     var x = -7,y = 7;
-
     var t1 = _.find(teams, function(item){
         return item.TEAM ===team1;
     });
