@@ -48,11 +48,11 @@ function initCharts(team,data){
 	}
 
 	if (document.getElementById('chart-line')) {
-		$('.chart-line-w').width(Percentage(w,n));
+		$('.chart-line-w').width(w/n*100+'%');
 		$('.chart-line-w').append(':'+w);
-		$('.chart-line-d').width(Percentage(d,n));
+		$('.chart-line-d').width(d/n*100+'%');
 		$('.chart-line-d').append(':'+d);
-		$('.chart-line-l').width(Percentage(l,n));
+		$('.chart-line-l').width(l/n*100+'%');
 		$('.chart-line-l').append(':'+l);
 	}
 
