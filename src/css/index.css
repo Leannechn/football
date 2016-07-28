@@ -3,7 +3,10 @@
 	width: 100%;
 	margin: 0 auto;
 }
-.pagination{width: 480px;}
+.pagination{width: 500px;}
+table td {
+     padding: 0.4em 0.4em; 
+}
  .spotlight.right .content{
  	width: 76em;
  	padding-top: 1em;

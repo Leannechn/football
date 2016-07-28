@@ -268,6 +268,9 @@ function prediction(team1,team2,data){
     var pde = percentage(dn,allnum);
     var ple = percentage(ln,allnum);
 
+    $('#g1-goals').text(pwe);
+    $('#p-goals').text(pde);
+    $('#g2-goals').text(ple);
     //重绘饼图
     drawPie(wn,dn,ln);
 
