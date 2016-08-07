@@ -50,15 +50,11 @@ $().ready(function(){
                     }
                     if ((item.TEAM1 == teamName2 && item.TEAM2 == teamName1)) {
                         isok = true;
-                        var tg = item.T1G;
-                        item.T1G =  item.T2G;
-                        item.T2G = tg;
                     }
                     return isok;
                 });
-                resetStatic(arr);
-                drawPie(arr);
-                prediction(teamName1,teamName2,arr);
+                if (!arr.length) {alert('这两支队伍无历史比赛数据');}
+                prediction(teamName1,teamName2);
             }else{
                 alert('数据加载中，请稍后！');
             }
@@ -176,6 +172,7 @@ function fnStatistic(matchesdata){
         };
     });
     
+    //求出积分
     _.each(matchesdata, function(item){
         var t1 = _.find(teams, function(v){
             return v.TEAM === item.TEAM1;
@@ -203,6 +200,19 @@ function fnStatistic(matchesdata){
     return teams; 
 }
 
+function getNumIndedx(d1,d2){
+    //积分差属于哪个区间
+    var x = -7,y = 7;
+    var di = d1-d2;
+    if (di<=x) {
+        return 0;
+    }else if(di>x && di<y){
+        return 1;
+    }else{
+        return 2;
+    }
+}
+
 
 function prediction(team1,team2,data){
     var x = -7,y = 7;
@@ -213,110 +223,69 @@ function prediction(team1,team2,data){
         return item.TEAM ===team2;
     });
 
-    var di = t1.getNumerical()-t2.getNumerical();
+    var di = t1.getNumerical()-t2.getNumerical(); //被选中的两个队伍的积分差
 
     //var pw = pd = pl = 0;
+    var compare_num = [[0,0,0],[0,0,0],[0,0,0]];//[W,D,L][区间1，区间2，区间3],二维矩阵
 
-    var wn = dn = ln = 0;//在符合di区域中的赢平输次数
-    var diteam = [];
-    //分三类
-    if (di<=x) {
-        //积分差同一分类的队伍
-        diteam = _.filter(teams, function(it){
-            return it.TEAM != team1 && (t1.getNumerical()-it.getNumerical()) <= x;
-        });
-    }else if(di>x && di<y){
-        //积分差同一分类的队伍
-        diteam = _.filter(teams, function(it){
-            var ddi = t1.getNumerical()-it.getNumerical();
-            return it.TEAM != team1 &&  ddi > x && ddi<y;
-        });
-    }else{
-        //积分差同一分类的队伍
-        diteam = _.filter(teams, function(it){
-            return it.TEAM != team1 && (t1.getNumerical()-it.getNumerical()) > y;
-        });
+    var arr = _.filter(matchesdata,function(item){
+        return item.TEAM1 == team1 || item.TEAM2 == team1;
+    });
+    _.each(arr, function(item){
+        var ta = _.find(teams, function(v){
+            return v.TEAM === item.TEAM1;
+        }).getNumerical();
+        var tb = _.find(teams, function(v){
+            return v.TEAM === item.TEAM2;
+        }).getNumerical();
 
-    }
-    //过滤在此范围（diteam）内的比赛 并计算w l d次数。
-    var arr = _.filter(matchesdata, function(it){
-            var isReturn = false;
-            if(it.TEAM1 === team1 && _.find(diteam, function(d){
-                return d.TEAM === it.TEAM2;
-            })){
-                isReturn = true;
-                if (it.T1G > it.T2G) {
-                    wn++;
-                }else if(it.T1G === it.T2G){
-                    dn++;
-                }else{ln++;}
-            }else if(it.TEAM2 === team1 && _.find(diteam, function(d){
-                return d.TEAM === it.TEAM1;
-            })){
-                isReturn = true;
-                if (it.T1G > it.T2G) {
-                    ln++;
-                }else if(it.T1G === it.T2G){
-                    dn++;
-                }else{wn++;}
-            }
-            return isReturn;
+        if (item.T1G > item.T2G) {
+            //队1胜 队x输:队x胜 队1输:
+            compare_num[item.TEAM1 == team1? 0:2][getNumIndedx(ta,tb)]++;
+            
+                
+        }if (item.T1G == item.T2G) {
+            //队1胜 队x输
+            compare_num[1][getNumIndedx(ta,tb)]++;
+            
+        }else{
+            //队1输 队x胜
+            compare_num[item.TEAM1 == team1? 2:0][getNumIndedx(ta,tb)]++;
+            
+        }
     });
 
-    //------------team2---------------
-    var wn = dn = ln = 0;//在符合di区域中的赢平输次数
-    var diteam = [];
-    //分三类
-    if (di<=x) {
-        //积分差同一分类的队伍
-        diteam = _.filter(teams, function(it){
-            return it.TEAM != team1 && (t1.getNumerical()-it.getNumerical()) <= x;
-        });
-    }else if(di>x && di<y){
-        //积分差同一分类的队伍
-        diteam = _.filter(teams, function(it){
-            var ddi = t1.getNumerical()-it.getNumerical();
-            return it.TEAM != team1 &&  ddi > x && ddi<y;
-        });
-    }else{
-        //积分差同一分类的队伍
-        diteam = _.filter(teams, function(it){
-            return it.TEAM != team1 && (t1.getNumerical()-it.getNumerical()) > y;
-        });
+    console.log(compare_num);
 
-    }
-    //过滤在此范围（diteam）内的比赛 并计算w l d次数。
-    var arr = _.filter(matchesdata, function(it){
-            var isReturn = false;
-            if(it.TEAM1 === team1 && _.find(diteam, function(d){
-                return d.TEAM === it.TEAM2;
-            })){
-                isReturn = true;
-                if (it.T1G > it.T2G) {
-                    wn++;
-                }else if(it.T1G === it.T2G){
-                    dn++;
-                }else{ln++;}
-            }else if(it.TEAM2 === team1 && _.find(diteam, function(d){
-                return d.TEAM === it.TEAM1;
-            })){
-                isReturn = true;
-                if (it.T1G > it.T2G) {
-                    ln++;
-                }else if(it.T1G === it.T2G){
-                    dn++;
-                }else{wn++;}
-            }
-            return isReturn;
-    });
-    //----------------------------------------
+    var wn = _.sum(compare_num[0]);//赢的所有场次数
+    var dn = _.sum(compare_num[1]);//平的所有场次数
+    var ln = _.sum(compare_num[2]);//输的所有场次数
 
+    var wn1 = compare_num[0][0];//赢的区间区间1
+    var wn2 = compare_num[0][1];//赢的区间区间2
+    var wn3 = compare_num[0][2];//赢的区间区间3
 
-    var allnum = arr.length;
+    var dn1 = compare_num[1][0];//平的区间区间1
+    var dn2 = compare_num[1][1];//平的区间区间2
+    var dn3 = compare_num[1][2];//平的区间区间3
 
-    var pwe = percentage(wn,allnum); //预测概率
-    var pde = percentage(dn,allnum);
-    var ple = percentage(ln,allnum);
+    var ln1 = compare_num[2][0];//输的区间区间1
+    var ln2 = compare_num[2][1];//输的区间区间2
+    var ln3 = compare_num[2][2];//输的区间区间3
+
+    var allnum = arr.length; //比赛的所有场次
+
+    //对应区间的比赛场次索引[0,1,2]
+    var index = getNumIndedx(t1.getNumerical(),t2.getNumerical());//二维数组中的第二个维度区间的下标。
+    var wnS = compare_num[0][index];//对应区间赢的所有场次数
+    var dnS = compare_num[1][index];//对应区间平的所有场次数
+    var lnS = compare_num[2][index];//对应区间输的所有场次数
+
+    var pwe = percentage(wnS,allnum); //预测概率
+    var pde = percentage(dnS,allnum);
+    var ple = percentage(lnS,allnum);
+
+    //percentage求百分比
 
     $('#g1-goals').text(pwe);
     $('#p-goals').text(pde);
