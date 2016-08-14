@@ -68,11 +68,11 @@ function initCharts(team,data){
 
 	chart2.setOption(option2);
 
-	option3.xAxis.data = _.map(data,'EDITION');
-	option3.series[0].data = _.map(data,'GS');
-	option3.series[1].data = _.map(data,'GA');
-	option3.series[2].data = _.map(data,'GAA');
-	option3.series[3].data = _.map(data,'GSA');
+	option3.xAxis.data = _.reverse(_.map(data,'EDITION'));
+	option3.series[0].data = _.reverse(_.map(data,'GS'));
+	option3.series[1].data = _.reverse(_.map(data,'GA'));
+	option3.series[2].data = _.reverse(_.map(data,'GAA'));
+	option3.series[3].data = _.reverse(_.map(data,'GSA'));
 	chart3.setOption(option3);
 
 

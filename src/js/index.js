@@ -3,8 +3,6 @@ $().ready(function(){
 	var option = {
 	    title: {
 	        text: 'World Population (2010)',
-	        subtext: 'from United Nations, Total population, both sexes combined, as of 1 July (thousands)',
-	        sublink: 'http://esa.un.org/wpp/Excel-Data/population.htm',
 	        left: 'center',
 	        top: 'top'
 	    },
@@ -30,7 +28,6 @@ $().ready(function(){
 	    },
 	    series: [
 	        {
-	            name: 'World Population (2010)',
 	            type: 'map',
 	            mapType: 'world',
 	            roam: true,
@@ -58,14 +55,14 @@ $().ready(function(){
 
 		$.get('localdata/teams_data.json', function (teamsJson) {
 			
-		   	option.series[0].label.normal.formatter = function(params){
+		   /*	option.series[0].label.normal.formatter = function(params){
 		   		var team = _.find(teamsJson, function(item){
 		   			return params.name.toUpperCase() === item.TEAM;
 		   		});
 		   		//console.log(team);
-		   		return !!team? team['name']:' ';
+		   		return !!team? params.name:' ';
 		   	}
-
+*/
 			worldMap.setOption(option);
 			$.get('localdata/teams_flag.json', function (teamsFlag) {
 				//初始化overview
@@ -96,6 +93,7 @@ function drawTable(teamsJson,teamsFlag){
 			{title:'DRAWS',data:'DRAWS'},
 			{title:'LOSSES',data:'LOSSES'}
 		],
+		dom: 'frtip',
 		columnDefs:[{
 					render:function(data){
 						var t = _.find(teamsFlag, function(name){
